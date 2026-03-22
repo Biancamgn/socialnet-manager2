@@ -54,7 +54,6 @@
 
               <p class="field-label">All Profiles:</p>
               <div id="profile-list" class="profile-list-box">
-                <!-- Populated dynamically by JavaScript -->
               </div>
             </div>
           </div>
@@ -65,12 +64,6 @@
               <h6 class="panel-heading">Profile Information</h6>
 
               <div class="profile-hero mb-1">
-                <!--
-                  Default src points to the Vercel Blob default avatar URL.
-                  app.js replaces this with profile.picture from Supabase,
-                  which is always a full https://... Vercel Blob URL after
-                  the SQL migration in the setup guide.
-                -->
                 <img id="profile-pic"
                      src="https://e0qz9wwxp0sj5hqy.public.blob.vercel-storage.com/avatars/default.webp"
                      alt="Profile picture"
@@ -108,32 +101,10 @@
                      placeholder="Enter favorite quote" />
               <button id="btn-quote" class="btn sn-btn-blue w-100 mb-3">Update Quote</button>
 
-              <!-- =====================================================
-                   Change Picture — two input modes
-                   =====================================================
-                   Mode A (Upload):
-                     The user picks a local image file with the file
-                     picker. app.js reads the file, sends it to
-                     /api/upload-avatar (our Vercel serverless function),
-                     which compresses it and stores it in Vercel Blob.
-                     The returned public URL is saved to Supabase.
 
-                   Mode B (URL):
-                     The user pastes a full https:// URL (e.g. from an
-                     existing Vercel Blob, Imgur, etc.). app.js saves
-                     that URL directly to Supabase without uploading.
-
-                   The two modes share the same "Update Picture" button.
-                   app.js checks which input has a value and uses that mode.
-                   If both have values, the file upload takes priority.
-                   ===================================================== -->
               <p class="field-label">Change Picture:</p>
 
-              <!--
-                input-picture-file: native file picker.
-                accept="image/*" restricts the OS file browser to images.
-                The "Upload" label makes the mode obvious.
-              -->
+
               <label for="input-picture-file" class="field-label mt-1">
                 Upload from device:
               </label>
@@ -144,11 +115,6 @@
                 accept="image/*"
               />
 
-              <!--
-                input-picture-url: fallback for users who already have a
-                hosted image URL (e.g. a previous Vercel Blob link or any
-                public image address).
-              -->
               <label for="input-picture-url" class="field-label">
                 Or paste an image URL:
               </label>
@@ -159,12 +125,6 @@
                 placeholder="https://example.com/image.webp"
               />
 
-              <!--
-                upload-progress is shown/hidden by app.js while the file
-                is being uploaded and compressed. It gives the user
-                feedback that something is happening (compression +
-                network upload can take 1-3 seconds).
-              -->
               <div id="upload-progress" class="upload-progress mb-2" hidden>
                 <div class="upload-progress-bar"></div>
                 <span id="upload-progress-label">Uploading...</span>
